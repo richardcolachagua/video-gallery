@@ -51,6 +51,32 @@ const VideoGallery = () => {
           </div>
         ))}
       </div>
+      {modal.open && (
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <span
+            className="modal-close"
+            onClick={() =>
+              setModal({
+                open: false,
+                video: null,
+              })
+            }
+          >
+            &times;
+          </span>
+          <video
+            src={modal.video.src}
+            controls
+            autoPlay
+            style={{ width: "100%", borderRadius: "10px" }}
+          />
+          <div style={{ color: "#fff", marginTop: "0.5rem" }}>
+            <strong>{modal.video.title}</strong> &bull;
+            {modal.video.topic} &bull; {modal.video.length}
+          </div>
+        </div>
+      )}
     </section>
   );
 };
+export default VideoGallery;
