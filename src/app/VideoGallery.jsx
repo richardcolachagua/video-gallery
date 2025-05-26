@@ -1,5 +1,29 @@
 import React, { useState } from "react";
+import "./video-gallery.css";
 
+const videos = [
+  {
+    src: "/",
+    thumb: "/",
+    title: "Nature Walk",
+    topic: "Nature",
+    length: "1:20",
+  },
+  {
+    src: "/",
+    thumb: "/",
+    title: "City Nights",
+    topic: "Urban",
+    length: "2:05",
+  },
+  {
+    src: "/",
+    thumb: "/",
+    title: "Mountain View",
+    topic: "Adventure",
+    length: "0:45",
+  },
+];
 const topics = ["All", ...Array.from(new Set(videos.map((v) => v.topic)))];
 
 const VideoGallery = () => {
@@ -52,27 +76,32 @@ const VideoGallery = () => {
         ))}
       </div>
       {modal.open && (
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <span
-            className="modal-close"
-            onClick={() =>
-              setModal({
-                open: false,
-                video: null,
-              })
-            }
-          >
-            &times;
-          </span>
-          <video
-            src={modal.video.src}
-            controls
-            autoPlay
-            style={{ width: "100%", borderRadius: "10px" }}
-          />
-          <div style={{ color: "#fff", marginTop: "0.5rem" }}>
-            <strong>{modal.video.title}</strong> &bull;
-            {modal.video.topic} &bull; {modal.video.length}
+        <div
+          className="modal"
+          onClick={() => setModal({ open: false, video: null })}
+        >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span
+              className="modal-close"
+              onClick={() =>
+                setModal({
+                  open: false,
+                  video: null,
+                })
+              }
+            >
+              &times;
+            </span>
+            <video
+              src={modal.video.src}
+              controls
+              autoPlay
+              style={{ width: "100%", borderRadius: "10px" }}
+            />
+            <div style={{ color: "#fff", marginTop: "0.5rem" }}>
+              <strong>{modal.video.title}</strong> &bull;
+              {modal.video.topic} &bull; {modal.video.length}
+            </div>
           </div>
         </div>
       )}
