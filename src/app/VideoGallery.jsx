@@ -55,17 +55,12 @@ const VideoGallery = () => {
           </button>
         ))}
       </div>
-      <div className="gallry-grid">
+      <div className="gallery-grid">
         {filteredVideos.map((video, idx) => (
           <div
             className="gallery-thumb"
             key={idx}
-            onClick={() =>
-              setModal({
-                open: true,
-                video,
-              })
-            }
+            onClick={() => setModal({ open: true, video })}
           >
             <img src={video.thumb} alt={video.title} />
             <span>
@@ -83,12 +78,8 @@ const VideoGallery = () => {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span
               className="modal-close"
-              onClick={() =>
-                setModal({
-                  open: false,
-                  video: null,
-                })
-              }
+              onClick={() => setModal({ open: false, video: null })}
+              title="Close"
             >
               &times;
             </span>
@@ -99,8 +90,8 @@ const VideoGallery = () => {
               style={{ width: "100%", borderRadius: "10px" }}
             />
             <div style={{ color: "#fff", marginTop: "0.5rem" }}>
-              <strong>{modal.video.title}</strong> &bull;
-              {modal.video.topic} &bull; {modal.video.length}
+              <strong>{modal.video.title}</strong> &bull; {modal.video.topic}{" "}
+              &bull; {modal.video.length}
             </div>
           </div>
         </div>
@@ -108,4 +99,5 @@ const VideoGallery = () => {
     </section>
   );
 };
+
 export default VideoGallery;
